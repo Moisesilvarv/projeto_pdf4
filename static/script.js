@@ -191,7 +191,7 @@ window.addEventListener("DOMContentLoaded", () => {
     formData.append("pdf", pdfBlob, "avaliacao.pdf");
     formData.append('nome', nome);  // adiciona o nome ao form data
 
-    fetch("http://localhost:5000/enviar-pdf", {
+    fetch("https://projeto-pdf4-1.onrender.com/enviar-pdf", {
       method: "POST",
       body: formData,
     })
