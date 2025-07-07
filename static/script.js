@@ -179,31 +179,30 @@ window.addEventListener("DOMContentLoaded", () => {
     doc.setTextColor(100);
     doc.text("ricardoguiportifolio.netlify.app", pageWidth / 2, pageHeight - 30, { align: "center" });
 
-    // Gera o PDF em Blob
+        // Gera o PDF em Blob
     const pdfBlob = doc.output("blob");
 
-    // Abre o PDF gerado numa nova aba
-    const url = URL.createObjectURL(pdfBlob);
-    window.open(url);
+    // Cria um File a partir do Blob para enviar com nome e tipo
+    const pdfFile = new File([pdfBlob], "avaliacao.pdf", { type: "application/pdf" });
 
     // Envia o PDF para o backend
     const formData = new FormData();
-    formData.append("pdf", pdfBlob, "avaliacao.pdf");
+    formData.append("pdf", pdfFile);
     formData.append('nome', nome);  // adiciona o nome ao form data
 
     fetch("https://projeto-pdf4-1.onrender.com/enviar-pdf", {
       method: "POST",
       body: formData,
     })
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          alert("PDF enviado ao email do professor");
-          form.reset();
-        } else {
-          alert("Erro ao enviar PDF: " + (data.error || "Desconhecido"));
-        }
-      })
-      .catch(err => alert("Erro ao enviar: " + err.message));
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        alert("PDF enviado ao email do professor");
+        form.reset();
+      } else {
+        alert("Erro ao enviar PDF: " + (data.error || "Desconhecido"));
+      }
+    })
+    .catch(err => alert("Erro ao enviar: " + err.message));
   });
-});
+}); 
