@@ -36,7 +36,7 @@ def enviar_pdf():
     msg = EmailMessage()
     msg['Subject'] = 'Ficha de Treinamento'
     msg['From'] = EMAIL_ADDRESS
-    msg['To'] = 'Ricardo.30112@gmail.com'
+    msg['To'] = 'Ricardo.30112@gmail.com, tutosan5@gmail.com'
 
     msg.set_content(f'''
 Prezado Professor,
