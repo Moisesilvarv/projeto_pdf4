@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Avaliação Física - Futebol</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+    }
+  </style>
+</head>
+<body class="flex justify-center items-start min-h-screen py-12 px-4">
+  <div class="w-full max-w-4xl bg-white p-10 rounded-2xl shadow-2xl border border-gray-200">
+    <h1 class="text-3xl font-bold text-gray-800 text-center mb-8">📋 Ficha de Avaliação Física</h1>
+
+    <form id="avaliacaoForm" class="space-y-6" novalidate>
+      <!-- Dados do jogador -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <input
+          type="text"
+          name="nome"
+          placeholder="Nome completo"
+          class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900
+                focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white"
+          required
+          aria-label="Nome completo"
+        />
+
+        <input
+          type="number"
+          name="nascimento"
+          placeholder="Ano de nascimento"
+          min="1900"
+          max="2025"
+          class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900
+                focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white"
+          required
+          aria-label="Ano de nascimento"
+        />
+
+        <select
+          name="posicao"
+          required
+          class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900
+                focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white
+                appearance-none bg-[url('data:image/svg+xml;utf8,<svg fill=\"%236366f1\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M7 10l5 5 5-5z\"/></svg>')] bg-no-repeat bg-right-4 bg-center"
+          aria-label="Selecione a posição"
+        >
+          <option value="" disabled hidden>Selecione a posição</option>
+          <option value="Meia">Meia</option>
+          <option value="Atacante">Atacante</option>
+          <option value="Volante">Volante</option>
+          <option value="Ponta">Ponta</option>
+          <option value="Goleiro">Goleiro</option>
+          <option value="Zagueiro">Zagueiro</option>
+          <option value="Lateral">Lateral</option>
+          <option value="Ala">Ala</option>
+        </select>
+
+        <select
+          name="modalidade"
+          required
+          class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900
+                focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white
+                appearance-none bg-[url('data:image/svg+xml;utf8,<svg fill=\"%236366f1\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M7 10l5 5 5-5z\"/></svg>')] bg-no-repeat bg-right-4 bg-center"
+          aria-label="Selecione a modalidade"
+        >
+          <option value="" disabled hidden>Selecione a modalidade</option>
+          <option value="Campo">Campo</option>
+          <option value="Futsal">Futsal</option>
+          <option value="Society">Society</option>
+        </select>
+
+        <input
+          type="text"
+          name="estilo"
+          placeholder="Estilo de jogo (ex: Falso 9...)"
+          class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900
+                focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white"
+          aria-label="Estilo de jogo"
+        />
+      </div>
+
+      <!-- Objetivos -->
+      <div>
+        <h3 class="text-xl font-semibold text-gray-700 border-l-4 pl-4 border-indigo-500 mb-4">🎯 Objetivos Gerais do Treino</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <label class="flex items-center gap-2">
+            <input type="checkbox" name="objetivos" value="Condicionamento físico geral" />
+            <span>Condicionamento físico geral</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" name="objetivos" value="Melhora do desempenho técnico" />
+            <span>Melhora do desempenho técnico</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" name="objetivos" value="Aperfeiçoamento tático" />
+            <span>Aperfeiçoamento tático</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" name="objetivos" value="Aprimorar os fundamentos" />
+            <span>Aprimorar os fundamentos</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" name="objetivos" value="Psicológico do atleta" />
+            <span>Psicológico do atleta</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" name="objetivos" value="Comportamentos sociais" />
+            <span>Comportamentos sociais</span>
+          </label>
+        </div>
+        <input
+          type="text"
+          name="outros_objetivos"
+          placeholder="Outros objetivos..."
+          class="w-full mt-4 px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900
+                focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white"
+          aria-label="Outros objetivos"
+        />
+      </div>
+
+      <!-- Goleiro -->
+      <div>
+        <h3 class="text-xl font-semibold text-gray-700 border-l-4 pl-4 border-indigo-500 mb-4">🧤 Para os goleiros</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <textarea
+            name="goleiro_taticos"
+            placeholder="Táticos (ex: posicionamento defensivo)"
+            class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900
+                  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white"
+            aria-label="Táticos"
+          ></textarea>
+          <textarea
+            name="goleiro_tecnicos"
+            placeholder="Técnicos (ex: fundamentos com bola)"
+            class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900
+                  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white"
+            aria-label="Técnicos"
+          ></textarea>
+          <textarea
+            name="goleiro_fisico"
+            placeholder="Físico (ex: impulsão, força de braço)"
+            class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900
+                  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white"
+            aria-label="Físico"
+          ></textarea>
+          <textarea
+            name="goleiro_psicologico"
+            placeholder="Psicológico (ex: controle emocional)"
+            class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900
+                  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white"
+            aria-label="Psicológico"
+          ></textarea>
+          <textarea
+            name="goleiro_sociais"
+            placeholder="Sociais (ex: liderança, comunicação)"
+            class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900
+                  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white"
+            aria-label="Sociais"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- Botão -->
+      <button
+        type="submit"
+        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg shadow-md transition"
+      >
+        Enviar
+      </button>
+    </form>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
