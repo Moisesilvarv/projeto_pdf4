@@ -13,6 +13,10 @@ CORS(app)
 EMAIL_ADDRESS = 'harmoisah@gmail.com'
 EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')  # Senha do app configurada no Render
 
+@app.route('/')
+def index():
+    return 'Servidor rodando!'
+
 @app.route('/enviar-pdf', methods=['POST'])
 def enviar_pdf():
     if 'pdf' not in request.files:
