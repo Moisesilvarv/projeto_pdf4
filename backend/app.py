@@ -52,5 +52,6 @@ Moises Da Silva Pimenta.
     except Exception as e:
         return jsonify({'error': f'Falha ao enviar email: {str(e)}'}), 500
 
-if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
