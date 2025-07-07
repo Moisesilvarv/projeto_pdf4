@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, abort
 from flask_cors import CORS
 import smtplib
 from email.message import EmailMessage
@@ -7,10 +7,10 @@ from dotenv import load_dotenv
 
 load_dotenv(override=True)
 
-# Ajuste aqui o caminho absoluto para a pasta raiz do seu projeto, onde estão o HTML/CSS/JS
-BASE_DIR = r"C:\Users\moise\Videos\projeto_ricardo1"
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # Pasta raiz do projeto (uma pasta acima do backend)
+STATIC_FOLDER = os.path.join(BASE_DIR, 'static')
 
-app = Flask(__name__, static_folder=BASE_DIR)
+app = Flask(__name__, static_folder=STATIC_FOLDER)
 CORS(app)
 
 EMAIL_ADDRESS = 'harmoisah@gmail.com'
@@ -18,13 +18,12 @@ EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
 
 @app.route('/')
 def index():
-    # Serve o index.html do frontend
     return send_from_directory(BASE_DIR, 'index.html')
 
-# Para servir arquivos estáticos (CSS, JS, imagens) dentro da pasta raiz
-@app.route('/<path:path>')
-def static_proxy(path):
-    return send_from_directory(BASE_DIR, path)
+@app.route('/static/<path:filename>')
+def static_files(filename):
+    # Serve arquivos estáticos do /static
+    return send_from_directory(STATIC_FOLDER, filename)
 
 @app.route('/enviar-pdf', methods=['POST'])
 def enviar_pdf():
@@ -37,7 +36,7 @@ def enviar_pdf():
     msg = EmailMessage()
     msg['Subject'] = 'Ficha de Treinamento'
     msg['From'] = EMAIL_ADDRESS
-    msg['To'] = 'tutosan5@gmail.com'  # Email do professor
+    msg['To'] = 'tutosan5@gmail.com'
 
     msg.set_content(f'''
 Prezado Professor,
